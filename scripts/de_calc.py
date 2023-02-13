@@ -1,11 +1,10 @@
 
 import pandas as pd
-import numpy as np
 
-from utils.de import read_in_df, correct_col_names
-from de_func import adi_cv_calc, calc_safety_stock, backcalculate_inv
-from de_func import filter_materials, analyse_materials, convert_gr_date
-from de_func import get_latest_gr_date, get_gr_qty, calc_leadtime_fl, consolidate_df
+from utils.de_generic import read_in_df, correct_col_names
+from utils.de_func import adi_cv_calc, calc_safety_stock, backcalculate_inv
+from utils.de_func import filter_materials, analyse_materials, convert_gr_date
+from utils.de_func import get_latest_gr_date, get_gr_qty, calc_leadtime_fl, consolidate_df
 
 
 def hist_lead_time_calc():

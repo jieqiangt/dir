@@ -1,6 +1,7 @@
-from utils.de import format_time_series
+from utils.de_generic import format_time_series
 import numpy as np
 import pandas as pd
+
 
 def calculate_avg_demand(df, lt):
 
@@ -210,3 +211,44 @@ def demand_cat(adi, cv):
         return 'intermittent'
     elif adi > 1.32 and cv > 0.49:
         return 'lumpy'
+
+# To create date related features for XGBoost Model
+def xgb_create_date_features(df_actual, label=None):
+    """
+    Creates time series features from datetime index
+    """
+
+    df = df_actual.copy()
+    cols = list(df.columns)
+
+    df['DATE'] = df.index
+    df['HOUR'] = df['DATE'].dt.hour
+    df['DAYOFWEEK'] = df['DATE'].dt.dayofweek
+    df['QUARTER'] = df['DATE'].dt.quarter
+    df['MONTH'] = df['DATE'].dt.month
+    df['YEAR'] = df['DATE'].dt.year
+    df['DAYOFYEAR'] = df['DATE'].dt.dayofyear
+    df['DAYOFMONTH'] = df['DATE'].dt.day
+    df['WEEKOFYEAR'] = df['DATE'].dt.weekofyear
+
+    date_cols = ['HOUR', 'DAYOFWEEK', 'QUARTER', 'MONTH', 'YEAR',
+                 'DAYOFYEAR', 'DAYOFMONTH', 'WEEKOFYEAR']
+
+    if label:
+        y = df[label]
+        cols.remove(label[0])
+        X = df[cols + date_cols]
+        return X, y
+    else:
+        X = df[cols + date_cols]
+        return X
+
+
+# formatitng data for fbprophet
+def format_fb(df):
+
+    df = df.reset_index().copy()
+    df.columns = ['ds', 'y']
+    df['ds'] = pd.to_datetime(df['ds'])
+
+    return df
