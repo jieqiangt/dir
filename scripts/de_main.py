@@ -1,13 +1,13 @@
-from de_calc import hist_lead_time_calc, latest_lead_time_calc, hist_demand_purchase_calc, demand_profile_cat, soh_calc, inv_backcalc, dues_out_calc, safety_stock_calc
+from scripts.de_calc import hist_lead_time_calc, latest_lead_time_calc, hist_demand_purchase_calc, demand_profile_cat, soh_calc, inv_backcalc, dues_out_calc, safety_stock_calc
 from utils.de_generic import consolidate_df
 import pandas as pd
-
 
 def de_main():
 
     hist_lt_df = hist_lead_time_calc()
     latest_lt_df = latest_lead_time_calc(hist_lt_df)
     ts_df = hist_demand_purchase_calc()
+    print(ts_df.columns)
     cat_df = demand_profile_cat(ts_df)
 
     materials = ts_df['material'].unique()

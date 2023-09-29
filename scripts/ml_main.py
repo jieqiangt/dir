@@ -1,10 +1,11 @@
 import pandas as pd
 import numpy as np
 from utils.de_generic import resample_df, format_time_series
+import run_models
 
 
 def ml_main():
-    
+
     # reading in data files
     df = pd.read_csv('./cleaned/ts_df.csv')
     meta_df = pd.read_csv('./cleaned/cat_df.csv')
@@ -26,9 +27,9 @@ def ml_main():
     freq_dict = {'weekly': {'m': 52,
                             'freq': 'W',
                             'test_periods': 8},
-                'monthly': {'m': 12,
-                            'freq': 'M',
-                            'test_periods': 3}}
+                 'monthly': {'m': 12,
+                             'freq': 'M',
+                             'test_periods': 3}}
 
     m = freq_dict[freq_str]['m']
     freq = freq_dict[freq_str]['freq']
@@ -66,7 +67,7 @@ def ml_main():
                 base_df = format_time_series(df, mat_code)
                 base_df = base_df.resample(rule=freq).sum()[['demand']]
 
-                metrics_df, pred_df = models_run(
+                metrics_df, pred_df = run_models(
                     base_df, m, freq, test_periods, mat_code)
 
                 # storing results

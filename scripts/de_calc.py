@@ -4,13 +4,13 @@ import pandas as pd
 from utils.de_generic import read_in_df, correct_col_names
 from utils.de_func import adi_cv_calc, calc_safety_stock, backcalculate_inv
 from utils.de_func import filter_materials, analyse_materials, convert_gr_date
-from utils.de_func import get_latest_gr_date, get_gr_qty, calc_leadtime_fl, consolidate_df
+from utils.de_func import get_latest_gr_date, get_gr_qty, calc_leadtime_fl
 
 
 def hist_lead_time_calc():
 
     # Read in data
-    main_df = read_in_df('../data/PR.xlsx')
+    main_df = read_in_df('./data/PR.xlsx')
 
     # data cleaning
     main_df = correct_col_names(main_df)
@@ -75,15 +75,14 @@ def latest_lead_time_calc(df):
 
 def hist_demand_purchase_calc():
 
-    main_df = read_in_df('./data/all/mb51.xlsx',
+    main_df = read_in_df('./data/mb51.xlsx',
                          skiprows=3, usecols=range(1, 23))
+
     main_df = correct_col_names(main_df)
-
-    req_cols = ['Pstng Date', 'Material', 'Quantity']
+    req_cols = ['pstng_date', 'material', 'quantity']
     main_df = main_df.loc[:, req_cols]
+    rename_dict = {'pstng_date': 'date', 'quantity': 'qty'}
 
-    rename_dict = {'Pstng Date': 'date',
-                   'Material': 'material', 'Quantity': 'qty'}
     main_df.rename(columns=rename_dict, inplace=True)
     main_df["material"] = main_df["material"].astype("str")
 
@@ -93,9 +92,9 @@ def hist_demand_purchase_calc():
     purchase_materials = purchase_df['material'].unique()
     demand_materials = demand_df['material'].unique()
 
-    unique_materials = analyse_materials(
+    unique_materials, _, _ = analyse_materials(
         main_df, purchase_materials, demand_materials)
-
+    
     output_df = filter_materials(main_df, unique_materials)
 
     return output_df

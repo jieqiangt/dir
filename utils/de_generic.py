@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
-
 def remove_unnamed_cols(df):
     '''
         Removes all columns that are unnamed when read in using pd.read_excel.

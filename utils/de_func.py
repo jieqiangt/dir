@@ -213,6 +213,8 @@ def demand_cat(adi, cv):
         return 'lumpy'
 
 # To create date related features for XGBoost Model
+
+
 def xgb_create_date_features(df_actual, label=None):
     """
     Creates time series features from datetime index

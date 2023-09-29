@@ -1,0 +1,24 @@
+SAP Report Name,job_date,mb51,dues_out,gr_price,soh,pr
+Column Names,Sales Ord.,SLoc, S/No,Material,Material,Material
+,Changed on,Pstng Date,Stock Code,Material description,Plnt,Short Text
+,Changed by,PO,SSN/NSN,Ext. material grp,SLoc,Purch.Req.
+,Order,Item,MPN,BUn,S,Item
+,Notification,MvT,Description,Last GR Price,Valuation,Req.Date
+,Reported by,Mat. Doc.,SYS,Plnt,Special stock number,Qty Requested
+,Sort field,Item.1,Job No, PDT,SL,Qty Requested.1
+,PO number,Reference,    Qty DO,IND,Batch,Ordered
+,UserStatus,   Quantity,DO Date,   unit price,BUn,Ordered.1
+,Functional loc.,Material,PO No,Curr.,Unrestricted,PR headerText
+,Created on,   Quantity.1,PO EDD,Old material no.,Crcy,PR Item Text
+,Created by,Batch,    QTY DI,,Value Unrestricted,PO Info
+,PO date,Order,PR No,,   Transit/Transf.,PO Info.1
+,Malf.start,WBS Element,PR Date,,Val. in Trans./Tfr,PO Info.2
+,MalfEnd,Reas.,   MID-Bal,,  In Quality Insp.,GR Info
+,Req. start,Text,   BLK Stk,,Value in QualInsp.,GR Info.1
+,Req. End,   Amount LC,    ST Bal,,    Restricted-Use,GR Info.2
+,Description, Qty OPUn,Supplier,,  Value Restricted,GR Info.3
+,Equipment,EUn,,,           Blocked,GR Info.4
+,PartResp.,Vendor,,,Value BlockedStock,GR Info.5
+,DescEmployeeResp.for job,Doc. Date,,,           Returns,PO Header Text
+,,Material Description,,,,po Item text
+Data Update Frequency,Daily,,,,,
